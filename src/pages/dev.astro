@@ -18,10 +18,12 @@ import { siteStats } from "@const/siteStats.js";
 		<h1>Site Stats</h1>
 		<ul>
 			{Object.entries(siteStats)
-				.filter(([label]) => label !== "posts")
 				.map(([label, value]) => (
 				<li><strong>{label}:</strong> {value}</li>
 				))}
 		</ul>
+		<p>
+			This page is mostly for myself and development purposes.
+		</p>
 	</body>
 </html>
