@@ -1,6 +1,6 @@
 :root {
-	--color-background: #f5f1ea;
-	--color-surface: #fffdf9;
+	--color-background: #e3e3e3;
+	--color-surface: #b3b3b3;
 	--color-text: #252525;
 	--color-muted: #6b6258;
 	--color-accent: #b34d32;
@@ -44,8 +44,31 @@ body {
 }
 
 .site-nav__brand {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 48px;
 	font-size: 1.2rem;
 	font-weight: bold;
+}
+
+.site-nav__brand img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: block;
+	width: 48px;
+	height: 48px;
+	object-fit: contain;
+	transform: translate(-50%, -50%);
+	opacity: 0.45;
+	z-index: 0;
+}
+
+.site-nav__brand span {
+	position: relative;
+	z-index: 1;
 }
 
 .site-nav__links {
