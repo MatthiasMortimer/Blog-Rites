@@ -1,5 +1,6 @@
 ---
 import SiteNav from "../components/SiteNav.astro";
+import { siteStats } from "@const/siteStats.js";
 ---
 
 <html lang="en">
@@ -13,11 +14,14 @@ import SiteNav from "../components/SiteNav.astro";
 	</head>
 	<body>
 	<SiteNav />
-  
-  <h1>About Me</h1>
-  <h2>... and my new blog site!</h2>
-  <p>Here, I will share my thoughts and experiences as I learn and grow in the world of web development.</p>
 
-  <p>This site will update as I complete more of the blog, so keep checking back and see how my journey is going!</p>
+		<h1>Site Stats</h1>
+		<ul>
+			{Object.entries(siteStats)
+				.filter(([label]) => label !== "posts")
+				.map(([label, value]) => (
+				<li><strong>{label}:</strong> {value}</li>
+				))}
+		</ul>
 	</body>
 </html>

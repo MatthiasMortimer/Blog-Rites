@@ -1,6 +1,9 @@
 ---
-
----
+import { happy, finished, goal } from "@const/identity.js";
+import { projects } from "@const/projects.js";
+import skills from "@const/skills.json";
+import SiteNav from "../components/SiteNav.astro";
+--- 
 
 <html lang="en">
 	<head>
@@ -12,10 +15,24 @@
 		<title>About - Blog Rites</title>
 	</head>
 	<body>
-        <a href="/">Home</a> <br>
-        <a href="/about/">About</a> <br>
-        <a href="/blog/">Blog</a>
+	<SiteNav />
 
-        <h1>Blog Rites</h1>
+        <h1>Security Rites</h1>
 	</body>
+	<p> 
+				Through this blog, I hope to document my journey, share insights, and connect with others who are passionate about security. <br /> 
+	</p>
+
+	<section class="projects" aria-labelledby="projects-title">
+		<h2 id="projects-title">Current Projects</h2>
+		<ul>
+			{projects.map((project) => (
+				<li>
+					<strong>{project.name}</strong>
+					<p>{project.description}</p>
+				</li>
+			))}
+		</ul>
+	</section>
+
 </html>

@@ -1,5 +1,8 @@
 ---
-
+import SiteNav from "../components/SiteNav.astro";
+import PostCard from "../components/PostCard.astro";
+import { posts } from "@const/posts.js";
+import { tags } from "@const/tags.js";
 ---
 
 <html lang="en">
@@ -12,12 +15,41 @@
 		<title>Blog Rites</title>
 	</head>
 	<body>
-  <a href="/">Home</a> <br>
-  <a href="/about/">About</a> <br>
-  <a href="/blog/">Blog</a>
+		<SiteNav />
 
-  <h1>About Me</h1>
-  <h1>My Astro Learning Blog</h1>
-  <p>This is where I will post about my journey learning Astro.</p>
+		<main>
+			<h1>Matts' Blog</h1>
+			<p>This is where I will post about my programming adventures.</p>
+
+			<div class="tag-filter" aria-label="Filter posts by tag">
+				<button class="tag-filter__button is-active" type="button" data-tag-filter="all">All</button>
+				{tags.map((tag) => (
+					<button class="tag-filter__button" type="button" data-tag-filter={tag}>{tag}</button>
+				))}
+			</div>
+
+			<section class="post-grid" aria-label="Blog posts">
+				{posts.map((post) => <PostCard {...post} />)}
+			</section>
+		</main>
+
+		<script>
+			const filterButtons = document.querySelectorAll("[data-tag-filter]");
+			const postCards = document.querySelectorAll(".post-card");
+
+			filterButtons.forEach((button) => {
+				button.addEventListener("click", () => {
+					const selectedTag = button.dataset.tagFilter;
+
+					filterButtons.forEach((filterButton) => {
+						filterButton.classList.toggle("is-active", filterButton === button);
+					});
+
+					postCards.forEach((postCard) => {
+						postCard.hidden = selectedTag !== "all" && postCard.dataset.tag !== selectedTag;
+					});
+				});
+			});
+		</script>
 	</body>
 </html>
