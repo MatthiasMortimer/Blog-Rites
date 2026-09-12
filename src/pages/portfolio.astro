@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import projects from "../content/projects.json";
+
+const devProjects = projects.filter((p) => p.category === "Development");
+const teachingProjects = projects.filter((p) => p.category.includes("Teaching"));
+---
+
+<BaseLayout title="Portfolio | RitesDev" description="Explore showcase development projects, web applications, open-source repositories, and teaching curricula.">
+	<div style="margin-bottom: 2rem;">
+		<h1>Portfolio &amp; Showcase</h1>
+		<p style="font-size: 1.1rem; max-width: 45rem;">
+			A collection of web development projects, client solutions, open-source tools, and educational curricula created for students and teams.
+		</p>
+	</div>
+
+	<!-- Development Showcase -->
+	<section>
+		<div class="section-header" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+			<div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+				<h2 style="margin: 0;">Development Projects</h2>
+				<span class="tag">Client &amp; SaaS Work</span>
+			</div>
+		</div>
+
+		<div class="grid-2" style="margin-top: 1.5rem;">
+			{devProjects.map((project) => (
+				<ProjectCard project={project} />
+			))}
+		</div>
+	</section>
+
+	<!-- Teaching & Open Source Showcase -->
+	<section style="margin-top: 3.5rem;">
+		<div class="section-header" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+			<div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+				<h2 style="margin: 0;">Teaching &amp; Educational Resources</h2>
+				<span class="tag tag-teaching">Bootcamps &amp; Open Source</span>
+			</div>
+		</div>
+
+		<div class="grid-2" style="margin-top: 1.5rem;">
+			{teachingProjects.map((project) => (
+				<ProjectCard project={project} />
+			))}
+		</div>
+	</section>
+
+	<!-- Github Callout -->
+	<section style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2rem; text-align: center; margin-top: 3rem;">
+		<h2 style="margin-top: 0;">Want to See More Code?</h2>
+		<p style="max-width: 36rem; margin: 0.5rem auto 1.5rem;">Explore additional personal projects, experimental repositories, and code samples on my GitHub profile.</p>
+		<a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit GitHub Profile &rarr;</a>
+	</section>
+</BaseLayout>

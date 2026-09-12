@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import serviceContent from "../content/services.json";
+import skills from "../content/skills.json";
+
+const { development: devServices, teaching: teachingServices } = serviceContent;
+---
+
+<BaseLayout title="Services & Teaching | RitesDev" description="Explore freelance web development services and personalized 1-on-1 coding mentorship packages.">
+	<div style="margin-bottom: 2rem;">
+		<h1>Services &amp; Teaching</h1>
+		<p style="font-size: 1.1rem; max-width: 45rem;">
+			Tailored software engineering solutions for businesses and personalized 1-on-1 tutoring for developers aiming to level up their technical skills.
+		</p>
+	</div>
+
+	<!-- Freelance Development Services -->
+	<section id="dev">
+		<div class="section-header" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
+			<div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+				<h2 style="margin: 0;">Freelance Web Development</h2>
+				<span class="tag">For Businesses &amp; Startups</span>
+			</div>
+			<p style="margin-top: 0.5rem; margin-bottom: 0;">Professional full-stack web engineering, custom backend APIs, and site performance audits.</p>
+		</div>
+
+		<div class="grid-2" style="margin-top: 1.5rem;">
+			{devServices.map((service) => (
+				<ServiceCard service={service} />
+			))}
+		</div>
+	</section>
+
+	<!-- Freelance Teaching Services -->
+	<section id="teaching">
+		<div class="section-header" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
+			<div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+				<h2 style="margin: 0;">Freelance Teaching &amp; Mentorship</h2>
+				<span class="tag tag-teaching">For Students &amp; Developers</span>
+			</div>
+			<p style="margin-top: 0.5rem; margin-bottom: 0;">Personalized tutoring, pair programming, code reviews, and structured team workshops.</p>
+		</div>
+
+		<div class="grid-2" style="margin-top: 1.5rem;">
+			{teachingServices.map((service) => (
+				<ServiceCard service={service} />
+			))}
+		</div>
+	</section>
+
+	<!-- Skills & Technologies -->
+	<section style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2rem; margin-top: 3rem;">
+		<h2 style="margin-top: 0;">Tech Stack &amp; Teaching Topics</h2>
+		<p>Tools and concepts I use daily for client development and student tutoring:</p>
+
+		<div class="grid-2" style="margin-top: 1.5rem;">
+			<div>
+				<h3 style="color: var(--color-accent); font-size: 1.1rem; margin-bottom: 0.75rem;">Development Stack</h3>
+				<div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+					{skills.development.map((skill) => (
+						<span class="tag" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">{skill}</span>
+					))}
+				</div>
+			</div>
+
+			<div>
+				<h3 style="color: var(--color-accent-secondary); font-size: 1.1rem; margin-bottom: 0.75rem;">Teaching Competencies</h3>
+				<div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+					{skills.teaching.map((skill) => (
+						<span class="tag tag-teaching" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">{skill}</span>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Process Section -->
+	<section>
+		<h2>How Working Together Works</h2>
+		<p>A simple, transparent process whether hiring for dev work or booking mentorship sessions.</p>
+
+		<div class="grid-3" style="margin-top: 1.5rem;">
+			<div class="card">
+				<span style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: bold; color: var(--color-accent);">01</span>
+				<h3 style="margin-top: 0.5rem;">Initial Consultation</h3>
+				<p style="font-size: 0.92rem;">We discuss your project requirements or learning goals, timeline, and expectations.</p>
+			</div>
+
+			<div class="card">
+				<span style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: bold; color: var(--color-accent-secondary);">02</span>
+				<h3 style="margin-top: 0.5rem;">Tailored Proposal / Plan</h3>
+				<p style="font-size: 0.92rem;">I provide a clear milestone scope for development or a structured weekly lesson roadmap for tutoring.</p>
+			</div>
+
+			<div class="card">
+				<span style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: bold; color: var(--color-accent-green);">03</span>
+				<h3 style="margin-top: 0.5rem;">Execution &amp; Support</h3>
+				<p style="font-size: 0.92rem;">Interactive development with regular updates, or live screen-share sessions with async Q&amp;A support.</p>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { identity } from "@const/identity.js";
+import siteStats from "../content/stats.json";
+---
+
+<BaseLayout title="About | RitesDev" description="Learn more about RitesDev, a freelance software developer and technical educator.">
+	<div style="margin-bottom: 2rem;">
+		<h1>About Me</h1>
+		<p style="font-size: 1.15rem; color: var(--color-accent); font-weight: 600;">
+			Developer by Day, Technical Mentor by Choice.
+		</p>
+	</div>
+
+	<div class="grid-2" style="align-items: start; gap: 2.5rem; margin-bottom: 3rem;">
+		<div>
+			<p style="font-size: 1.05rem; line-height: 1.7;">
+				Hello! I'm <strong>{identity.name}</strong>, a freelance full-stack developer and computer science educator based in {identity.location}.
+			</p>
+			<p style="font-size: 1.05rem; line-height: 1.7;">
+				My passion lies at the intersection of <strong>building clean, efficient web software</strong> and <strong>demystifying complex technical concepts</strong> for developers learning the trade.
+			</p>
+			<p style="font-size: 1.05rem; line-height: 1.7;">
+				In my development work, I focus heavily on the modern web stack—building blazingly fast websites with Astro, interactive web applications with React &amp; TypeScript, and reliable backend APIs with Node.js.
+			</p>
+			<p style="font-size: 1.05rem; line-height: 1.7;">
+				When teaching, I believe in practical, hands-on learning rather than rote memorization. I help students build real projects, master debugging techniques, and develop engineering intuition that serves them throughout their careers.
+			</p>
+		</div>
+
+		<div class="card" style="padding: 1.75rem;">
+			<div style="text-align: center; margin-bottom: 1.25rem;">
+				<img src={identity.avatar} alt={identity.name} style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--color-accent); margin-bottom: 0.75rem;" />
+				<h3 style="margin-bottom: 0.25rem;">{identity.name}</h3>
+				<span style="font-size: 0.9rem; color: var(--color-text-dim);">{identity.title}</span>
+			</div>
+
+			<div style="border-top: 1px solid var(--color-border); padding-top: 1rem;">
+				<h4 style="font-size: 0.95rem; text-transform: uppercase; color: var(--color-text-dim); margin-bottom: 0.75rem;">Quick Facts</h4>
+				<ul style="list-style-type: none; padding-left: 0;">
+					<li style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+						<span style="color: var(--color-text-dim);">Location:</span>
+						<strong>{identity.location}</strong>
+					</li>
+					<li style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+						<span style="color: var(--color-text-dim);">Status:</span>
+						<strong style="color: var(--color-accent-green);">Available for Hire</strong>
+					</li>
+					<li style="font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+						<span style="color: var(--color-text-dim);">Response Time:</span>
+						<strong>{siteStats["Response Time"]}</strong>
+					</li>
+				</ul>
+			</div>
+
+			<div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--color-border); text-align: center;">
+				<a href="/contact/" class="btn btn-primary btn-sm" style="width: 100%;">Get in Touch</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Business & Teaching Statistics -->
+	<section style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2rem;">
+		<h2 style="margin-top: 0; margin-bottom: 1.5rem;">Track Record &amp; Metrics</h2>
+		
+		<div class="grid-3">
+			{Object.entries(siteStats).map(([label, value]) => (
+				<div style="padding: 1rem; background: var(--color-bg); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+					<span style="display: block; font-size: 1.6rem; font-weight: bold; font-family: var(--font-mono); color: var(--color-accent); margin-bottom: 0.25rem;">{value}</span>
+					<span style="font-size: 0.9rem; color: var(--color-text-muted);">{label}</span>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<!-- Teaching & Dev Philosophies -->
+	<section>
+		<h2>My Philosophy</h2>
+
+		<div class="grid-2" style="margin-top: 1.5rem;">
+			<div class="card">
+				<h3 style="color: var(--color-accent);">Software Engineering Philosophy</h3>
+				<p>Code should be simple, explicit, and maintainable. I prioritize fast user experience, clean architecture, and minimal external dependencies whenever possible. A well-built application is easy to extend and a pleasure to read.</p>
+			</div>
+
+			<div class="card">
+				<h3 style="color: var(--color-accent-secondary);">Technical Teaching Philosophy</h3>
+				<p>Nobody learns programming solely by watching tutorials. Learning happens when you build, get stuck, and systematically debug. My job as a mentor is to provide the guardrails, explain the 'why' behind concepts, and build student confidence.</p>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
