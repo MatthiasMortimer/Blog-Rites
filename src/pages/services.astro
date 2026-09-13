@@ -1,17 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ServiceCard from "../components/ServiceCard.astro";
-import serviceContent from "../content/services.json";
-import skills from "../content/skills.json";
+import { frontmatter as home } from "../content/pages/index.md";
+import { frontmatter as servicePage } from "../content/pages/services.md";
 
-const { development: devServices, teaching: teachingServices } = serviceContent;
+const devServices = home.services.items.filter((service) => service.category === "Development");
+const teachingServices = home.services.items.filter((service) => service.category === "Teaching");
+const { development: developmentSkills, teaching: teachingSkills } = servicePage.skillLists;
 ---
 
 <BaseLayout title="Services & Teaching | RitesDev" description="Explore freelance web development services and personalized 1-on-1 coding mentorship packages.">
 	<div style="margin-bottom: 2rem;">
-		<h1>Services &amp; Teaching</h1>
+		<h1>{servicePage.title}</h1>
 		<p style="font-size: 1.1rem; max-width: 45rem;">
-			Tailored software engineering solutions for businesses and personalized 1-on-1 tutoring for developers aiming to level up their technical skills.
+			{servicePage.description}
 		</p>
 	</div>
 
@@ -19,10 +21,10 @@ const { development: devServices, teaching: teachingServices } = serviceContent;
 	<section id="dev">
 		<div class="section-header" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
 			<div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-				<h2 style="margin: 0;">Freelance Web Development</h2>
-				<span class="tag">For Businesses &amp; Startups</span>
+				<h2 style="margin: 0;">{servicePage.development.title}</h2>
+				<span class="tag">{servicePage.development.tag}</span>
 			</div>
-			<p style="margin-top: 0.5rem; margin-bottom: 0;">Professional full-stack web engineering, custom backend APIs, and site performance audits.</p>
+			<p style="margin-top: 0.5rem; margin-bottom: 0;">{servicePage.development.description}</p>
 		</div>
 
 		<div class="grid-2" style="margin-top: 1.5rem;">
@@ -36,10 +38,10 @@ const { development: devServices, teaching: teachingServices } = serviceContent;
 	<section id="teaching">
 		<div class="section-header" style="border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
 			<div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-				<h2 style="margin: 0;">Freelance Teaching &amp; Mentorship</h2>
-				<span class="tag tag-teaching">For Students &amp; Developers</span>
+				<h2 style="margin: 0;">{servicePage.teaching.title}</h2>
+				<span class="tag tag-teaching">{servicePage.teaching.tag}</span>
 			</div>
-			<p style="margin-top: 0.5rem; margin-bottom: 0;">Personalized tutoring, pair programming, code reviews, and structured team workshops.</p>
+			<p style="margin-top: 0.5rem; margin-bottom: 0;">{servicePage.teaching.description}</p>
 		</div>
 
 		<div class="grid-2" style="margin-top: 1.5rem;">
@@ -51,23 +53,23 @@ const { development: devServices, teaching: teachingServices } = serviceContent;
 
 	<!-- Skills & Technologies -->
 	<section style="background: var(--color-bg-secondary); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 2rem; margin-top: 3rem;">
-		<h2 style="margin-top: 0;">Tech Stack &amp; Teaching Topics</h2>
-		<p>Tools and concepts I use daily for client development and student tutoring:</p>
+		<h2 style="margin-top: 0;">{servicePage.skills.title}</h2>
+		<p>{servicePage.skills.description}</p>
 
 		<div class="grid-2" style="margin-top: 1.5rem;">
 			<div>
-				<h3 style="color: var(--color-accent); font-size: 1.1rem; margin-bottom: 0.75rem;">Development Stack</h3>
+					<h3 style="color: var(--color-accent); font-size: 1.1rem; margin-bottom: 0.75rem;">{servicePage.skills.developmentTitle}</h3>
 				<div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-					{skills.development.map((skill) => (
+					{developmentSkills.map((skill) => (
 						<span class="tag" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">{skill}</span>
 					))}
 				</div>
 			</div>
 
 			<div>
-				<h3 style="color: var(--color-accent-secondary); font-size: 1.1rem; margin-bottom: 0.75rem;">Teaching Competencies</h3>
+					<h3 style="color: var(--color-accent-secondary); font-size: 1.1rem; margin-bottom: 0.75rem;">{servicePage.skills.teachingTitle}</h3>
 				<div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-					{skills.teaching.map((skill) => (
+					{teachingSkills.map((skill) => (
 						<span class="tag tag-teaching" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">{skill}</span>
 					))}
 				</div>
@@ -77,27 +79,17 @@ const { development: devServices, teaching: teachingServices } = serviceContent;
 
 	<!-- Process Section -->
 	<section>
-		<h2>How Working Together Works</h2>
-		<p>A simple, transparent process whether hiring for dev work or booking mentorship sessions.</p>
+		<h2>{servicePage.process.title}</h2>
+		<p>{servicePage.process.description}</p>
 
 		<div class="grid-3" style="margin-top: 1.5rem;">
-			<div class="card">
-				<span style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: bold; color: var(--color-accent);">01</span>
-				<h3 style="margin-top: 0.5rem;">Initial Consultation</h3>
-				<p style="font-size: 0.92rem;">We discuss your project requirements or learning goals, timeline, and expectations.</p>
-			</div>
-
-			<div class="card">
-				<span style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: bold; color: var(--color-accent-secondary);">02</span>
-				<h3 style="margin-top: 0.5rem;">Tailored Proposal / Plan</h3>
-				<p style="font-size: 0.92rem;">I provide a clear milestone scope for development or a structured weekly lesson roadmap for tutoring.</p>
-			</div>
-
-			<div class="card">
-				<span style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: bold; color: var(--color-accent-green);">03</span>
-				<h3 style="margin-top: 0.5rem;">Execution &amp; Support</h3>
-				<p style="font-size: 0.92rem;">Interactive development with regular updates, or live screen-share sessions with async Q&amp;A support.</p>
-			</div>
+			{servicePage.process.steps.map((step: { number: string; title: string; body: string }, index: number) => (
+				<div class="card">
+					<span style={`font-family: var(--font-mono); font-size: 1.5rem; font-weight: bold; color: ${index === 0 ? "var(--color-accent)" : index === 1 ? "var(--color-accent-secondary)" : "var(--color-accent-green)"};`}>{step.number}</span>
+					<h3 style="margin-top: 0.5rem;">{step.title}</h3>
+					<p style="font-size: 0.92rem;">{step.body}</p>
+				</div>
+			))}
 		</div>
 	</section>
 </BaseLayout>

@@ -1,10 +1,9 @@
 ---
 import { identity } from "@const/identity.js";
-import serviceContent from "../content/services.json";
+import { frontmatter as home } from "../content/pages/index.md";
 
-const allServices = [...serviceContent.development, ...serviceContent.teaching];
-const devServices = serviceContent.development;
-const teachingServices = serviceContent.teaching;
+const devServices = home.services.items.filter((service) => service.category === "Development");
+const teachingServices = home.services.items.filter((service) => service.category === "Teaching");
 ---
 
 <div class="card" style="padding: 2rem;">

@@ -1,5 +1,6 @@
 # Tech Business & Freelance Portfolio (Astro)
-
+# To-Do 
+- 
 A clean, customizable, fast tech business and portfolio website for freelance web development and freelance technical teaching/tutoring. Built with Astro.
 
 ## Features

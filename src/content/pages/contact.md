@@ -1,4 +1,11 @@
 ---
+title: Contact & Hire
+description: Ready to discuss a new software project or book a 1-on-1 tutoring session? Reach out using the form below or send a direct email.
+directTitle: Direct Contact Info
+emailLabel: Email Address
+locationLabel: Location
+statusLabel: Current Status
+faqTitle: Frequently Asked Questions
 faqs:
   - q: What is your hourly rate / project estimate process?
     a: For freelance development projects, I provide fixed-price proposals based on project scope or hourly billing for open-ended consulting ($75-$100/hr). For 1-on-1 tutoring, standard sessions start at $65/hr with package discounts.
